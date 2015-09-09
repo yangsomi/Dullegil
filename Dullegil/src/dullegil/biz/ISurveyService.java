@@ -8,7 +8,7 @@ public interface ISurveyService {
 	int count();
 	int countCommnet();
 	List<Survey> getAllSurvey();
-	boolean newSurvey(Survey Survey);
+	boolean newSurvey(Survey survey);
 	List<Survey> surveyByMonth();
 	List<Survey> surveyByWeek();
 	

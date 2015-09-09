@@ -9,4 +9,7 @@ public interface ISurveyDAO {
 	int countCommnet();
 	boolean createSurvey(Survey survey);
 	List<Survey> selectAllSurvey();
+	//Ãß°¡
+	List<Survey> selectByMonthSurvey();
+	List<Survey> selectByWeekSurvey();
 }
