@@ -24,4 +24,16 @@ public class DullegilController {
 		m.addAttribute("surveyList", list);
 		return "surveyList";
 	}
+	
+	@RequestMapping("/nfcManage.do")
+	public String nfcList(Model m){
+		
+		return "nfcManage";
+	}
+	
+	@RequestMapping("/stampbook.do")
+	public String stampBook(String userId, Model m){
+		
+		return "stampbook";
+	}
 }
