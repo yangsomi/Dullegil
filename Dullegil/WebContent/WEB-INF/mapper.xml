@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.xcoda.BoardMapper">
+	
+	<resultMap type="board" id="boardResultMap">
+		<id property="no" column="NO" />
+	</resultMap>
+	
+	<select id="selectBoardAll" resultMap="boardResultMap">
+		SELECT  b.*                                                   
+		from   (SELECT ROWNUM ro, a.*                             
+				FROM (  SELECT no, title, content, id 
+						, TO_CHAR(regdate,'yyyy-mm-dd') regdate 
+						 FROM board                                    
+						WHERE 1=1                                  
+			            ORDER BY NO DESC                    
+				      ) a                                           
+				) b
+	</select>
+
+
+	<select id="selectBoard" parameterType="String" resultMap="boardResultMap">
+		select * from board where no = #{no} 
+	</select>
+	
+	<select id="getBoardNo" resultType="int">
+	select BOARD_SEQ.nextval from dual
+	</select>
+	
+	<select id="boardCount" resultType="int">
+	SELECT  count(*) cnt from board  WHERE 1=1    
+	
+	</select>	
+
+	<insert id="insertBoard" parameterType="board">
+		INSERT INTO board(no,
+		title, content, id, regdate)
+		VALUES(#{no}, #{title},
+		#{content}, #{id}, sysdate)
+
+	</insert>
+
+	<delete id="deleteBoard" parameterType="String">
+	delete from board where no =#{no} 	
+	</delete>
+	
+	<update id="updateBoard" parameterType="board">
+	update board set title=#{title}, content=#{content}, regdate=sysdate where no =#{no}
+	
+	</update>
+
+</mapper>
+
